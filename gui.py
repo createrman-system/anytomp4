@@ -1,9 +1,28 @@
 import customtkinter as ctk
-from tkinter import filedialog, messagebox
+from tkinter import messagebox
 import threading
 import sys
+import requests
+import os
 
 from tkinterdnd2 import DND_FILES, TkinterDnD
+
+# ===== Ensure coder.py exists =====
+CODER_URL = "https://raw.githubusercontent.com/createrman-system/anytomp4/refs/heads/main/coder.py"
+CODER_PATH = os.path.join(os.path.dirname(__file__), "coder.py")
+
+if not os.path.isfile(CODER_PATH):
+    try:
+        print("⬇️ coder.py not found, downloading...")
+        response = requests.get(CODER_URL)
+        response.raise_for_status()
+        with open(CODER_PATH, "wb") as f:
+            f.write(response.content)
+        print("✅ coder.py downloaded successfully!")
+    except Exception as e:
+        print(f"❌ Failed to download coder.py: {e}")
+
+# Now import coder
 import coder
 
 
@@ -26,7 +45,7 @@ class App:
     def __init__(self, root):
         self.root = root
         self.root.title("Encoder GUI PRO")
-        self.root.geometry("900x600")
+        self.root.geometry("900x650")
 
         # THEME
         ctk.set_appearance_mode("dark")
@@ -112,7 +131,7 @@ class App:
             hover_color="#2F6EA8",
             command=self.start
         )
-        self.start_btn.pack(pady=20)
+        self.start_btn.pack(pady=10)
 
         # ===== CONSOLE =====
         self.console = ctk.CTkTextbox(
@@ -140,6 +159,7 @@ class App:
 
     # ===== FILE PICKERS =====
     def browse_input(self):
+        from tkinter import filedialog
         if self.mode.get() == "encode":
             file = filedialog.askopenfilename()
         else:
@@ -150,6 +170,7 @@ class App:
             self.input_entry.insert(0, file)
 
     def browse_output(self):
+        from tkinter import filedialog
         file = filedialog.asksaveasfilename(defaultextension=".mp4")
         if file:
             self.output_entry.delete(0, "end")
