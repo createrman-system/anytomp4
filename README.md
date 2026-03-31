@@ -2,6 +2,9 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://www.python.org/)  
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)  
+[![GitHub Stars](https://img.shields.io/github/stars/createrman-system/anytomp4?style=social)](https://github.com/createrman-system/anytomp4)
+[![GitHub Forks](https://img.shields.io/github/forks/createrman-system/anytomp4?style=social)](https://github.com/createrman-system/anytomp4)
+[![Latest Release](https://img.shields.io/github/v/release/createrman-system/anytomp4)](https://github.com/createrman-system/anytomp4/releases)
 
 **AnyToMP4** is a powerful and user-friendly Python tool with a modern GUI for **encoding any file into MP4** and decoding it back securely. It includes optional encryption support and is perfect for both CLI enthusiasts and GUI users.
 
