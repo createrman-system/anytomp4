@@ -9,7 +9,15 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 
 # ===== Ensure coder.py exists =====
 CODER_URL = "https://raw.githubusercontent.com/createrman-system/anytomp4/refs/heads/main/coder.py"
-CODER_PATH = os.path.join(os.path.dirname(__file__), "coder.py")
+# Add this helper function to handle PyInstaller's temp folder
+def get_resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+CODER_PATH = get_resource_path("coder.py")
 
 if not os.path.isfile(CODER_PATH):
     try:
